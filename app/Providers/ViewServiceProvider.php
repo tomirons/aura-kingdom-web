@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Application;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,6 +29,12 @@ class ViewServiceProvider extends ServiceProvider
         view()->composer( 'front.header', function ( $view ) {
             $apps = Application::all();
             $view->with( 'apps', $apps );
+        });
+
+        view()->composer( 'front.widgets', function( $view ) {
+            $client_status = @fsockopen( settings( 'server_ip', '127.0.0.1' ), 6543, $errCode, $errStr, 1 ) ? TRUE : FALSE;
+            $worlds = DB::connection('account')->table('worlds')->get();
+            $view->with( 'client_status', $client_status )->with( 'worlds', $worlds );
         });
     }
 
