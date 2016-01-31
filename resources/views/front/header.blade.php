@@ -91,7 +91,7 @@
                                 <ul class="dropdown-menu pull-right">
                                     @foreach( $languages as $language )
                                         <li>
-                                            <a href="{{ Request::url() . '?language=' . $language }}">
+                                            <a href="{{ url( 'language/' . $language ) }}">
                                                 <img src="{{ asset( 'img/flags/' . $language . '.png' ) }}"> {{ trans( 'language.' . $language ) }}
                                             </a>
                                         </li>

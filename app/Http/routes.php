@@ -24,6 +24,8 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
+    /* Language */
+    Route::get( 'language/{lang}', 'LanguageController@index' );
     /* Auth */
     Route::get( 'login', 'Front\AuthController@getLogin' );
     Route::post( 'login', 'Front\AuthController@postLogin' );
