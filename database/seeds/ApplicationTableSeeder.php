@@ -20,13 +20,13 @@ class ApplicationTableSeeder extends Seeder
             'updated_at' => Carbon::now()
         ]);
 
-        DB::table('apps')->insert([
+        /*DB::table('apps')->insert([
             'key' => 'shop',
             'position' => 2,
             'enabled' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
-        ]);
+        ]);*/
 
         DB::table('apps')->insert([
             'key' => 'donate',
