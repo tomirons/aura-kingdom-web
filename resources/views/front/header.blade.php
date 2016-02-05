@@ -35,7 +35,7 @@
                             @else
                                 <li>
                                     <a href="{{ url( 'donate' ) }}">
-                                        {{ trans( 'main.acc_balance', ['money' => Auth::user()->balance(), 'currency' => settings('currency_name')] ) }}
+                                        {{ trans( 'main.acc_balance', ['money' => Auth::user()->balance()] ) }}
                                     </a>
                                 </li>
                                 <li class="dropdown dropdown-separator hidden-xs">

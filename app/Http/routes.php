@@ -23,6 +23,14 @@
 |
 */
 
+Route::group( [], function() {
+
+    /* Donate */
+    Route::post( 'donate/paypal', 'Front\DonateController@postIPN' );
+    Route::post( 'donate/paymentwall', 'Front\DonateController@postPaymentwall' );
+
+});
+
 Route::group(['middleware' => ['web']], function () {
 
     /* Character */
@@ -42,5 +50,9 @@ Route::group(['middleware' => ['web']], function () {
 
     /* Shop */
     //Route::get( 'shop', ['as' => 'shop.index', 'uses' => 'Front\ShopController@getIndex'] );
+
+    /* Donate */
+    Route::get( 'donate', ['as' => 'donate.index', 'uses' => 'Front\DonateController@getIndex'] );
+    Route::post( 'donate', 'Front\DonateController@postDonate' );
 
 });

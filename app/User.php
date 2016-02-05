@@ -67,7 +67,7 @@ class User extends Authenticatable
      */
     public function balance()
     {
-        return number_format( $this->money, 2 );
+        return number_format( DB::connection( 'member' )->table( 'tb_user' )->where( 'mid', $this->username )->first()->pvalues );
     }
 
     /**
