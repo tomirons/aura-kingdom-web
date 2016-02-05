@@ -41,6 +41,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get( '/', ['as' => 'news.index', 'uses' => 'Front\NewsController@getIndex'] );
 
     /* Shop */
-    Route::get( 'shop', ['as' => 'shop.index', 'uses' => 'Front\ShopController@getIndex'] );
+    //Route::get( 'shop', ['as' => 'shop.index', 'uses' => 'Front\ShopController@getIndex'] );
 
 });

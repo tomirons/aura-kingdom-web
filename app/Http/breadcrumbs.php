@@ -11,3 +11,10 @@ Breadcrumbs::register( 'news.index', function( $breadcrumbs )
     $breadcrumbs->parent( 'home' );
     $breadcrumbs->push( trans( 'main.apps.news' ) );
 });
+
+/* Shop */
+Breadcrumbs::register( 'shop.index', function( $breadcrumbs )
+{
+    $breadcrumbs->parent( 'home' );
+    $breadcrumbs->push( trans( 'main.apps.shop' ) );
+});
