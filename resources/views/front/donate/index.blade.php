@@ -11,7 +11,7 @@
             @if ( settings( 'paypal_email' ) )
                 <div class="portlet light">
                     <div class="portlet-body">
-                        <form action="{{ url( 'donate' ) }}" onsubmit="return donation_check();" method="post">
+                        <form action="{{ url( 'donate/submit' ) }}" onsubmit="return donation_check();" method="post">
                             {!! csrf_field() !!}
                             <legend>{{ trans( 'donate.paypal_title' ) }}</legend>
                             <div class="col-md-12 mb-md">

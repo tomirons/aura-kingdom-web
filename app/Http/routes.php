@@ -53,6 +53,6 @@ Route::group(['middleware' => ['web']], function () {
 
     /* Donate */
     Route::get( 'donate', ['as' => 'donate.index', 'uses' => 'Front\DonateController@getIndex'] );
-    Route::post( 'donate', 'Front\DonateController@postDonate' );
+    Route::post( 'donate/submit', 'Front\DonateController@postDonate' );
 
 });
