@@ -41,6 +41,32 @@
                                 <li class="dropdown dropdown-separator hidden-xs">
                                     <span class="separator"></span>
                                 </li>
+                                <li class="dropdown dropdown-dark hidden-xs">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                        {{ Auth::user()->characterSelected() ? Auth::user()->character()->given_name : trans( 'main.select_character' ) }}
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-default">
+                                        {{--*/ $characters = Auth::user()->characters() /*--}}
+                                        @if ( count( $characters ) > 0 )
+                                            @foreach( $characters as $character )
+                                                <li>
+                                                    <a href="{{ url( 'character/select/' . $character->id ) }}">
+                                                        {{ $character->given_name }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        @else
+                                            <li>
+                                                <a href="#">
+                                                    {{ trans( 'main.char_list_error' ) }}
+                                                </a>
+                                            </li>
+                                        @endif
+                                    </ul>
+                                </li>
+                                <li class="dropdown dropdown-separator">
+                                    <span class="separator"></span>
+                                </li>
                                 <li class="dropdown dropdown-dark">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                         <img class="avatar" src="{{ Avatar::create( strtoupper( Auth::user()->username ) )->toBase64() }}" />

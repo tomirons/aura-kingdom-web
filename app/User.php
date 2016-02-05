@@ -69,4 +69,34 @@ class User extends Authenticatable
     {
         return number_format( $this->money, 2 );
     }
+
+    /**
+     * Get weather or not the user has selected a character
+     *
+     * @return mixed
+     */
+    public function characterSelected()
+    {
+        return session()->has( 'character' );
+    }
+
+    /**
+     * Get the users character list
+     *
+     * @return mixed
+     */
+    public function characters()
+    {
+        return DB::connection( 'game' )->table( 'player_characters' )->where( 'account_name', $this->username )->get();
+    }
+
+    /**
+     * Get the current selected character information
+     *
+     * @return mixed
+     */
+    public function character()
+    {
+        return session()->get( 'character' );
+    }
 }

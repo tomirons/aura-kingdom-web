@@ -24,8 +24,13 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
+
+    /* Character */
+    Route::get( 'character/select/{role_id}', 'Front\CharacterController@getIndex' );
+
     /* Language */
     Route::get( 'language/{lang}', 'LanguageController@index' );
+
     /* Auth */
     Route::get( 'login', 'Front\AuthController@getLogin' );
     Route::post( 'login', 'Front\AuthController@postLogin' );
@@ -34,4 +39,8 @@ Route::group(['middleware' => ['web']], function () {
 
     /* News */
     Route::get( '/', ['as' => 'news.index', 'uses' => 'Front\NewsController@getIndex'] );
+
+    /* Shop */
+    Route::get( 'shop', ['as' => 'shop.index', 'uses' => 'Front\ShopController@getIndex'] );
+
 });
