@@ -23,14 +23,6 @@
 |
 */
 
-Route::group( [], function() {
-
-    /* Donate */
-    Route::post( 'donate/paypal', 'Front\DonateController@postIPN' );
-    Route::post( 'donate/paymentwall', 'Front\DonateController@postPaymentwall' );
-
-});
-
 Route::group(['middleware' => ['web']], function () {
 
     /* Character */
@@ -54,5 +46,12 @@ Route::group(['middleware' => ['web']], function () {
     /* Donate */
     Route::get( 'donate', ['as' => 'donate.index', 'uses' => 'Front\DonateController@getIndex'] );
     Route::post( 'donate/submit', 'Front\DonateController@postDonate' );
+    Route::post( 'donate/paypal', 'Front\DonateController@postIPN' );
+    Route::post( 'donate/paymentwall', 'Front\DonateController@postPaymentwall' );
+
+    /* Vote */
+    Route::get( 'vote', ['as' => 'vote.index', 'uses' => 'Front\VoteController@getIndex'] );
+    Route::get( 'vote/success/{site}', ['as' => 'vote.success', 'uses' => 'Front\VoteController@getSuccess'] );
+    Route::post( 'vote/check/{site}', 'Front\VoteController@postCheck' );
 
 });
