@@ -76,7 +76,13 @@ class DonateController extends Controller
         }
     }
 
-    public function postPaypalComplete( Request $request )
+    /**
+     * Process the PayPal payment
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function postPaypalComplete(Request $request )
     {
         $complete = $this->gateway->completePurchase([
             'transactionReference' => $request->paymentId,
