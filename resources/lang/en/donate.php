@@ -24,7 +24,7 @@ return [
     'paypal_per' => 'Currency per :currency',
     'paypal_min' => 'Minimum Amount',
     'paypal' => [
-        'description' => 'Product description',
+        'description' => ':amount Aura Points',
         'success' => 'Thank you for supporting our server, we appreciate your donation.'
     ],
     'paymentwall_link' => 'iFrame Link',

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Front;
 
 use App\Payment;
-use App\User;
 use App\UserInfo;
 use Illuminate\Http\Request;
 
@@ -58,7 +57,7 @@ class DonateController extends Controller
         $transaction = $this->gateway->purchase([
             'amount'        => number_format( $request->dollars, 2 ),
             'currency'      => settings( 'paypal_currency' ),
-            'description'   => trans( 'donate.paypal.description' ),
+            'description'   => trans( 'donate.paypal.description', [ 'amount' => $request->dollars ] ),
             'returnUrl'     => url( 'donate/paypal/complete' ),
             'cancelUrl'     => url( 'donate' ),
         ]);
@@ -82,7 +81,7 @@ class DonateController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function postPaypalComplete(Request $request )
+    public function postPaypalComplete( Request $request )
     {
         $complete = $this->gateway->completePurchase([
             'transactionReference' => $request->paymentId,

@@ -45,7 +45,7 @@ Route::group(['middleware' => ['web']], function () {
 
     /* Donate */
     Route::get( 'donate', ['as' => 'donate.index', 'uses' => 'Front\DonateController@getIndex'] );
-    Route::post( 'donate/paypal/request', 'Front\DonateController@postPaypalSubmit' );
+    Route::post( 'donate/paypal', 'Front\DonateController@postPaypalSubmit' );
     Route::get( 'donate/paypal/complete', 'Front\DonateController@postPayPalComplete' );
     Route::post( 'donate/paymentwall', 'Front\DonateController@postPaymentwall' );
 

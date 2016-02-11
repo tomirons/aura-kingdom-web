@@ -1,7 +1,7 @@
 @extends( 'front.header' )
 
 @section( 'content' )
-        @if ( !settings( 'paypal_email') && !settings( 'paymentwall_link' ) )
+        @if ( !settings( 'paypal_client_id' ) && !settings( 'paymentwall_link' ) )
             <div class="portlet light">
                 <div class="portlet-body text-center">
                     {{ trans( 'donate.no_methods' ) }}
@@ -11,7 +11,7 @@
             @if ( settings( 'paypal_email' ) )
                 <div class="portlet light">
                     <div class="portlet-body">
-                        <form action="{{ url( 'donate/paypal/request' ) }}" onsubmit="return donation_check();" method="post">
+                        <form action="{{ url( 'donate/paypal' ) }}" onsubmit="return donation_check();" method="post">
                             {!! csrf_field() !!}
                             <legend>{{ trans( 'donate.paypal_title' ) }}</legend>
                             <div class="col-md-12 mb-md">
