@@ -23,6 +23,10 @@ return [
     'paypal_email' => 'Paypal Email',
     'paypal_per' => 'Currency per :currency',
     'paypal_min' => 'Minimum Amount',
+    'paypal' => [
+        'description' => 'Product description',
+        'success' => 'Thank you for supporting our server, we appreciate your donation.'
+    ],
     'paymentwall_link' => 'iFrame Link',
     'paymentwall_link_desc' => '',
     'paymentwall_key' => 'Secret Key',

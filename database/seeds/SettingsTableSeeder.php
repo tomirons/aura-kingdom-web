@@ -60,10 +60,18 @@ class SettingsTableSeeder extends Seeder
             ]);
         }
 
-        if ( !DB::table('settings')->where('setting_key', 'paypal_email' )->exists() )
+        if ( !DB::table('settings')->where('setting_key', 'paypal_client_id' )->exists() )
         {
             DB::table('settings')->insert([
-                'setting_key' => 'paypal_email',
+                'setting_key' => 'paypal_client_id',
+                'setting_value' => serialize(NULL)
+            ]);
+        }
+
+        if ( !DB::table('settings')->where('setting_key', 'paypal_secret' )->exists() )
+        {
+            DB::table('settings')->insert([
+                'setting_key' => 'paypal_secret',
                 'setting_value' => serialize(NULL)
             ]);
         }

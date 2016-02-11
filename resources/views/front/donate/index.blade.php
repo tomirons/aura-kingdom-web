@@ -11,7 +11,7 @@
             @if ( settings( 'paypal_email' ) )
                 <div class="portlet light">
                     <div class="portlet-body">
-                        <form action="{{ url( 'donate/submit' ) }}" onsubmit="return donation_check();" method="post">
+                        <form action="{{ url( 'donate/paypal/request' ) }}" onsubmit="return donation_check();" method="post">
                             {!! csrf_field() !!}
                             <legend>{{ trans( 'donate.paypal_title' ) }}</legend>
                             <div class="col-md-12 mb-md">
@@ -79,16 +79,16 @@
         }
 
         $(function() {
-            var per_USD = "{{ settings('paypal_per') }}";
+            var per = "{{ settings('paypal_per') }}";
             var double_donation = "{{ settings( 'paypal_double' ) }}";
             $("#donation_dollars").on('input', function () {
                 format_number("donation_dollars", 2);
-                $("#donation_tokens").val($("#donation_dollars").val() * ( double_donation ? per_USD * 2 : per_USD ) );
+                $("#donation_tokens").val($("#donation_dollars").val() * ( double_donation ? per * 2 : per ) );
                 format_number("donation_tokens", 0);
             });
             $("#donation_tokens").on('input', function () {
                 format_number("donation_tokens", 0);
-                $("#donation_dollars").val($("#donation_tokens").val() / ( double_donation ? per_USD * 2 : per_USD ) );
+                $("#donation_dollars").val($("#donation_tokens").val() / ( double_donation ? per * 2 : per ) );
                 format_number("donation_dollars", 2);
             });
         });
