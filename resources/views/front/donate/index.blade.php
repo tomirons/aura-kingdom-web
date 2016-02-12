@@ -8,7 +8,7 @@
                 </div>
             </div>
         @else
-            @if ( settings( 'paypal_email' ) )
+            @if ( settings( 'paypal_client_id' ) )
                 <div class="portlet light">
                     <div class="portlet-body">
                         <form action="{{ url( 'donate/paypal' ) }}" onsubmit="return donation_check();" method="post">
