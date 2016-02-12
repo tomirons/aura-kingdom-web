@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Payment;
+use App\User;
 use App\UserInfo;
 use Illuminate\Http\Request;
 
@@ -52,12 +53,19 @@ class DonateController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function postPaypalSubmit( Request $request )
+    public function postPayPalSubmit( Request $request )
     {
         $transaction = $this->gateway->purchase([
-            'amount'        => number_format( $request->dollars, 2 ),
+            'items'         => [
+                0 => [
+                    'name' => 'Aura Points',
+                    'quantity' => 1,
+                    'price' => number_format( $request->dollars, 2, '.', '' ),
+                    'currency' => settings( 'paypal_currency' )
+                ]
+            ],
+            'amount'        => number_format( $request->dollars, 2, '.', '' ),
             'currency'      => settings( 'paypal_currency' ),
-            'description'   => trans( 'donate.paypal.description', [ 'amount' => $request->dollars ] ),
             'returnUrl'     => url( 'donate/paypal/complete' ),
             'cancelUrl'     => url( 'donate' ),
         ]);
@@ -81,7 +89,7 @@ class DonateController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function postPaypalComplete( Request $request )
+    public function postPayPalComplete( Request $request )
     {
         $complete = $this->gateway->completePurchase([
             'transactionReference' => $request->paymentId,
@@ -106,7 +114,6 @@ class DonateController extends Controller
 
             $user->pvalues = $user->pvalues + $payment_amount;
             $user->save();
-
         }
 
         flash()->success( trans( 'donate.paypal.success' ) );
