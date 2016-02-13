@@ -2,8 +2,11 @@
 
 namespace App\Console;
 
+use App\Family;
+use App\Player;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,7 +27,44 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('inspire')
-                 ->hourly();
+        $schedule->call(function () {
+            $players = DB::connection('game')->table('player_characters')->get();
+            foreach ($players as $player)
+            {
+                $player_info = [
+                    'id' => $player->id,
+                    'name' => $player->given_name,
+                    'level' => $player->level,
+                    'class' => 0,
+                    'gold' => $player->gold,
+                    'family_name' => ($player->family_id) ? DB::connection('game')->table('family')->where('id', $player->family_id)->first()->name : '-'
+                ];
+
+                Player::create($player_info);
+            }
+        })->everyThirtyMinutes();
+
+        $schedule->call(function () {
+            $families = DB::connection('game')->table('family')->get();
+            foreach ($families as $family)
+            {
+                $gold = 0;
+                foreach ( DB::connection( 'game' )->table( 'player_characters' )->where( 'family_id', $family->id )->get() as $player )
+                {
+                    $gold += $player->gold;
+                }
+
+                $family_info = [
+                    'id' => $family->id,
+                    'name' => $family->name,
+                    'level' => $family->lv,
+                    'gold' => $gold,
+                    'members' => DB::connection( 'game' )->table( 'player_characters' )->where( 'family_id', $family->id )->count(),
+                    'leader' => DB::connection( 'game' )->table( 'player_characters' )->where( 'id', $family->leader_id )->first()->given_name
+                ];
+
+                Family::create($family_info);
+            }
+        })->everyThirtyMinutes();
     }
 }

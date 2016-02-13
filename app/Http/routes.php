@@ -51,4 +51,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::get( 'vote/success/{site}', ['as' => 'vote.success', 'uses' => 'Front\VoteController@getSuccess'] );
     Route::post( 'vote/check/{site}', 'Front\VoteController@postCheck' );
 
+    /* Ranking */
+    Route::get( 'ranking', 'Front\RankingController@getIndex' );
+    Route::get( 'ranking/player/{sub}', ['as' => 'ranking.index', 'uses' => 'Front\RankingController@getPlayer'] );
+    Route::get( 'ranking/family', function(){
+        return redirect( 'ranking/family/level' );
+    });
+    Route::get( 'ranking/family/{sub}', ['as' => 'ranking.index', 'uses' => 'Front\RankingController@getFamily'] );
+
 });

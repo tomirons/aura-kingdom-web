@@ -31,3 +31,10 @@ Breadcrumbs::register( 'vote.success', function( $breadcrumbs )
     $breadcrumbs->parent( 'vote.index' );
     $breadcrumbs->push( trans( 'vote.success.title' ) );
 });
+
+/* Ranking */
+Breadcrumbs::register( 'ranking.index', function( $breadcrumbs )
+{
+    $breadcrumbs->parent( 'home' );
+    $breadcrumbs->push( trans( 'main.apps.ranking' ) );
+});
