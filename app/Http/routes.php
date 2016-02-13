@@ -40,9 +40,6 @@ Route::group(['middleware' => ['web']], function () {
     /* News */
     Route::get( '/', ['as' => 'news.index', 'uses' => 'Front\NewsController@getIndex'] );
 
-    /* Shop */
-    //Route::get( 'shop', ['as' => 'shop.index', 'uses' => 'Front\ShopController@getIndex'] );
-
     /* Donate */
     Route::get( 'donate', ['as' => 'donate.index', 'uses' => 'Front\DonateController@getIndex'] );
     Route::post( 'donate/paypal', 'Front\DonateController@postPayPalSubmit' );
