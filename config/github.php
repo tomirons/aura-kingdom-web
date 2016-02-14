@@ -22,7 +22,7 @@ return [
     |
     */
 
-    'default' => 'main',
+    'default' => 'alternative',
 
     /*
     |--------------------------------------------------------------------------
@@ -46,8 +46,8 @@ return [
         ],
 
         'alternative' => [
-            'clientId'     => 'your-client-id',
-            'clientSecret' => 'your-client-secret',
+            'clientId'     => '19bb464bbfb95d28d585',
+            'clientSecret' => 'ba14c0556ef8e3e39afd4da0fc77266ccfb294ed',
             'method'       => 'application',
             // 'baseUrl'      => 'https://api.github.com/',
             // 'version'      => 'v3',
