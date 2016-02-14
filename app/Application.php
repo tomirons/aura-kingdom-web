@@ -14,6 +14,20 @@ class Application extends Model
     protected $table = 'apps';
 
     /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'key';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
      * Save the enabled state of the application
      *
      * @param $value
@@ -21,5 +35,10 @@ class Application extends Model
     public function setEnabledAttribute($value)
     {
         $this->attributes['enabled'] = $value ? 1 : 0;
+    }
+
+    public function enabled()
+    {
+        return true;
     }
 }

@@ -26,4 +26,11 @@ class UserInfo extends Model
      * @var string
      */
     protected $primaryKey = 'mid';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
 }

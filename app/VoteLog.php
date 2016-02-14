@@ -24,6 +24,13 @@ class VoteLog extends Model
     protected $fillable = ['user_id', 'ip_address', 'reward', 'site_id'];
 
     /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
      * @param $query
      * @param Request $request
      * @param VoteSite $site
