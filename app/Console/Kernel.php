@@ -42,7 +42,7 @@ class Kernel extends ConsoleKernel
 
                 Player::create($player_info);
             }
-        })->everyThirtyMinutes();
+        })->everyTenMinutes();
 
         $schedule->call(function () {
             $families = DB::connection('game')->table('family')->get();
@@ -65,6 +65,6 @@ class Kernel extends ConsoleKernel
 
                 Family::create($family_info);
             }
-        })->everyThirtyMinutes();
+        })->everyTenMinutes();
     }
 }
