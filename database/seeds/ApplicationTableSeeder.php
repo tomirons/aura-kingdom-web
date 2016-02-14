@@ -12,7 +12,7 @@ class ApplicationTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('apps')->insert([
+        DB::table('applications')->insert([
             'key' => 'news',
             'position' => 1,
             'enabled' => 1,
@@ -20,41 +20,25 @@ class ApplicationTableSeeder extends Seeder
             'updated_at' => Carbon::now()
         ]);
 
-        /*DB::table('apps')->insert([
-            'key' => 'shop',
+        DB::table('applications')->insert([
+            'key' => 'donate',
             'position' => 2,
             'enabled' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
-        ]);*/
+        ]);
 
-        DB::table('apps')->insert([
-            'key' => 'donate',
+        DB::table('applications')->insert([
+            'key' => 'vote',
             'position' => 3,
             'enabled' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
-        DB::table('apps')->insert([
-            'key' => 'vote',
-            'position' => 4,
-            'enabled' => 1,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
-        ]);
-
-        DB::table('apps')->insert([
-            'key' => 'services',
-            'position' => 5,
-            'enabled' => 1,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
-        ]);
-
-        DB::table('apps')->insert([
+        DB::table('applications')->insert([
             'key' => 'ranking',
-            'position' => 6,
+            'position' => 4,
             'enabled' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()

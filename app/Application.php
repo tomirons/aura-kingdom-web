@@ -7,13 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Application extends Model
 {
     /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'apps';
-
-    /**
      * The primary key for the model.
      *
      * @var string
