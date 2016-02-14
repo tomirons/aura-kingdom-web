@@ -93,10 +93,17 @@ class AuthController extends Controller
             'idnum' => $new_id
         ]);
 
+        DB::connection('account')->table('accounts')->insert([
+            'id' => $new_id,
+            'username' => $data['name'],
+            'password' => $data['password'],
+        ]);
+
         return User::create([
             'id' => $new_id,
             'username' => $data['name'],
             'password' => $data['password'],
+            'role' => 'member'
         ]);
     }
 }
