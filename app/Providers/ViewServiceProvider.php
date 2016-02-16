@@ -31,6 +31,17 @@ class ViewServiceProvider extends ServiceProvider
             $view->with( 'apps', $apps );
         });
 
+        view()->composer( 'admin.news.form', function ( $view ) {
+            $categories = [
+                'update' => trans( 'news.category.update' ),
+                'maintenance' => trans( 'news.category.maintenance' ),
+                'event' => trans( 'news.category.event' ),
+                'contest' => trans( 'news.category.contest' ),
+                'other' => trans( 'news.category.other' )
+            ];
+            $view->with( 'categories', $categories );
+        });
+
         view()->composer( 'front.widgets', function( $view ) {
             $client_status = @fsockopen( settings( 'server_ip', '127.0.0.1' ), 6543, $errCode, $errStr, 1 ) ? TRUE : FALSE;
             $worlds = DB::connection('account')->table('worlds')->get();
