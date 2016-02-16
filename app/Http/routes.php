@@ -23,7 +23,7 @@
 |
 */
 
-Route::group(['middleware' => ['web', 'language']], function () {
+Route::group(['middleware' => ['web']], function () {
 
     /* Character */
     Route::get( 'character/select/{role_id}', 'Front\CharacterController@getIndex' );
@@ -89,5 +89,37 @@ Route::group(['middleware' => ['web', 'language']], function () {
         /* Vote */
         Route::resource( 'vote', 'Admin\VoteController' );
 
+    });
+
+    /* Installer */
+    Route::group( ['prefix' => 'admin/install', 'as' => 'admin.installer.'], function()
+    {
+        Route::group( ['middleware' => 'installed'], function()
+        {
+            Route::get( '/', [
+                'as' => 'welcome',
+                'uses' => 'Admin\InstallController@welcome'
+            ]);
+
+            Route::get( 'requirements', [
+                'as' => 'requirements',
+                'uses' => 'Admin\InstallController@requirements'
+            ]);
+
+            Route::get( 'settings', [
+                'as' => 'settings',
+                'uses' => 'Admin\InstallController@getSettings'
+            ]);
+
+            Route::post( 'setup', [
+                'as' => 'settings.save',
+                'uses' => 'Admin\InstallController@postSettings'
+            ]);
+
+            Route::get( 'complete', [
+                'as' => 'complete',
+                'uses' => 'Admin\InstallController@complete'
+            ]);
+        });
     });
 });
