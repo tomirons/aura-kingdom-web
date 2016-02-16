@@ -1,27 +1,46 @@
-## Laravel PHP Framework
+## Aura Kingdom Web
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+### Requirements
+1. GitHub Account
+2. Composer & Git - [Complete steps 1 & 2 on this tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-14-04)
+3. PHP 5.5.9 or higher
+4. PHP GD extension, not sure if you have it? Run `apt-get install php5-gd; service apache2 restart`
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+### Setup
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Download the latest release and upload the files.
 
-## Official Documentation
+First you need to rename `.env.example` to `.env`
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Then set the permissions to 777 for the following directories/files:
 
-## Contributing
+- storage/app/
+- storage/framework/
+- storage/logs/
+- bootstrap/cache/
+- .env
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Next, edit the `.env` file and change the database credentials.
 
-## Security Vulnerabilities
+**Note:** You will need to make a new database for the panel to store it's data.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+**Note:** Make sure your inside the `pw-web` directory when you run the commands.
 
-### License
+Run the following command to install all the required packages:
+````
+composer install
+````
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+The next step is to create all the database tables and default records, run the following command:
+````
+php artisan migrate --seed
+````
+
+Finally, run this last command to generate an application key:
+````
+php artisan key:generate
+````
+
+**Note:** If you receive a 500 error after installation, redo the permissions again.
+
+If you receive any other errors please create an [issue](https://github.com/huludini/aura-kingdom-web/issues).
