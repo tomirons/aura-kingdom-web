@@ -24,7 +24,7 @@ Next, edit the `.env` file and change the database credentials.
 
 **Note:** You will need to make a new database for the panel to store it's data.
 
-**Note:** Make sure your inside the `pw-web` directory when you run the commands.
+**Note:** Make sure your inside the `aura-kingdom-web` directory when you run the commands.
 
 Run the following command to install all the required packages:
 ````
