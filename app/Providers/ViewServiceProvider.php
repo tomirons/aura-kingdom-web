@@ -47,6 +47,10 @@ class ViewServiceProvider extends ServiceProvider
             $worlds = DB::connection('account')->table('worlds')->get();
             $view->with( 'client_status', $client_status )->with( 'worlds', $worlds );
         });
+
+        view()->composer( 'admin.donate.settings', function ( $view ) {
+            $view->with( 'currencies', trans( 'donate.currency' ) );
+        });
     }
 
     /**
