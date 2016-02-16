@@ -13,6 +13,7 @@ return [
     'players_online_title' => 'Players Online',
     'acc_registered_title' => 'Accounts Registered',
     'total_characters_title' => 'Characters Created',
+    'total_families_title' => 'Families Created',
     'status' => 'Server Status',
     'client' => 'Client',
 
