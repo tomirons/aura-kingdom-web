@@ -21,8 +21,7 @@ return [
     'news' => [
         'title' => 'News',
         'create' => 'Add Article',
-        'view' => 'View Articles',
-        'settings' => 'Settings'
+        'view' => 'View Articles'
     ],
     'donate' => [
         'title' => 'Donate',
@@ -32,10 +31,6 @@ return [
         'title' => 'Vote',
         'create' => 'Add Site',
         'view' => 'View Sites'
-    ],
-    'ranking' => [
-        'title' => 'Ranking',
-        'settings' => 'Settings'
     ],
 
 ];

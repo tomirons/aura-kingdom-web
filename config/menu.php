@@ -13,13 +13,9 @@ return [
         'system' => 'settings',
         'members' => 'user',
         'news' => 'book-open',
-        'shop' => 'basket',
         'donate' => 'credit-card',
-        'voucher' => 'tag',
         'vote' => 'like',
-        'services' => 'magic-wand',
         'ranking' => 'bar-chart',
-        'management' => 'users'
     ],
 
     'admin' => [
@@ -34,8 +30,7 @@ return [
         'news' => [
             'application' => TRUE,
             'create',
-            'view',
-            'settings'
+            'view'
         ],
         'donate' => [
             'application' => TRUE,
@@ -45,10 +40,6 @@ return [
             'application' => TRUE,
             'create',
             'view'
-        ],
-        'ranking' => [
-            'application' => TRUE,
-            'settings'
-        ],
+        ]
     ]
 ];
