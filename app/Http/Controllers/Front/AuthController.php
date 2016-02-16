@@ -102,7 +102,7 @@ class AuthController extends Controller
         return User::create([
             'id' => $new_id,
             'username' => $data['name'],
-            'password' => $data['password'],
+            'password' => Hash::make($data['password']),
             'role' => 'member'
         ]);
     }
