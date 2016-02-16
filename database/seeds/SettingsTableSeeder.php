@@ -20,22 +20,6 @@ class SettingsTableSeeder extends Seeder
             ]);
         }
 
-        if ( !DB::table('settings')->where('setting_key', 'server_ip' )->exists() )
-        {
-            DB::table('settings')->insert([
-                'setting_key' => 'server_ip',
-                'setting_value' => serialize('127.0.0.1')
-            ]);
-        }
-
-        if ( !DB::table('settings')->where('setting_key', 'currency_name' )->exists() )
-        {
-            DB::table('settings')->insert([
-                'setting_key' => 'currency_name',
-                'setting_value' => serialize('Coins')
-            ]);
-        }
-
         if ( !DB::table('settings')->where('setting_key', 'paypal_per' )->exists() )
         {
             DB::table('settings')->insert([
@@ -105,54 +89,6 @@ class SettingsTableSeeder extends Seeder
             DB::table('settings')->insert([
                 'setting_key' => 'paymentwall_key',
                 'setting_value' => serialize(NULL)
-            ]);
-        }
-
-        if ( !DB::table('settings')->where('setting_key', 'news_items_per_page' )->exists() )
-        {
-            DB::table('settings')->insert([
-                'setting_key' => 'news_items_per_page',
-                'setting_value' => serialize(12)
-            ]);
-        }
-
-        if ( !DB::table('settings')->where('setting_key', 'shop_items_per_page' )->exists() )
-        {
-            DB::table('settings')->insert([
-                'setting_key' => 'shop_items_per_page',
-                'setting_value' => serialize(12)
-            ]);
-        }
-
-        if ( !DB::table('settings')->where('setting_key', 'level_up_cap' )->exists() )
-        {
-            DB::table('settings')->insert([
-                'setting_key' => 'level_up_cap',
-                'setting_value' => serialize(105)
-            ]);
-        }
-
-        if ( !DB::table('settings')->where('setting_key', 'teleport_x' )->exists() )
-        {
-            DB::table('settings')->insert([
-                'setting_key' => 'teleport_x',
-                'setting_value' => serialize('1280.6788')
-            ]);
-        }
-
-        if ( !DB::table('settings')->where('setting_key', 'teleport_y' )->exists() )
-        {
-            DB::table('settings')->insert([
-                'setting_key' => 'teleport_y',
-                'setting_value' => serialize('219.61784')
-            ]);
-        }
-
-        if ( !DB::table('settings')->where('setting_key', 'teleport_z' )->exists() )
-        {
-            DB::table('settings')->insert([
-                'setting_key' => 'teleport_z',
-                'setting_value' => serialize('1021.2097')
             ]);
         }
     }
