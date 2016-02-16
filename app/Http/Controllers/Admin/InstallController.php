@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use Efriandika\LaravelSettings\Facades\Settings;
 use Exception;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 class InstallController extends Controller
@@ -146,6 +148,21 @@ class InstallController extends Controller
      */
     public function complete()
     {
+        // Check if there are accounts already created
+        $accounts = DB::connection( 'member' )->table( 'tb_user' )->get();
+        if ( count( $accounts ) > 0 )
+        {
+            foreach ( $accounts as $account )
+            {
+                User::create([
+                    'id' => $account->idnum,
+                    'username' => $account->mid,
+                    'password' => $account->pwd,
+                    'role' => 'member'
+                ]);
+            }
+        }
+
         if ( session( 'message' )['status'] === 'success' )
         {
             Artisan::call( 'key:generate' );
