@@ -45,20 +45,22 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="dropdown visible-lg">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <i class="icon-globe"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-default">
-                                @foreach( $languages as $language )
-                                    <li>
-                                        <a href="{{ Request::url() . '?language=' . $language }}">
-                                            <img src="{{ asset( 'img/flags/' . $language . '.png' ) }}"> {{ trans( 'language.' . $language ) }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </li>
+                        @if( count( $languages ) > 1 )
+                            <li class="dropdown visible-lg">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <i class="icon-globe"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-default">
+                                    @foreach( $languages as $language )
+                                        <li>
+                                            <a href="{{ Request::url() . '?language=' . $language }}">
+                                                <img src="{{ asset( 'img/flags/' . $language . '.png' ) }}"> {{ trans( 'language.' . $language ) }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>
