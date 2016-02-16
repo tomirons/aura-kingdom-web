@@ -61,11 +61,6 @@ Route::group(['middleware' => ['web', 'language']], function () {
 
         Route::get( '/', ['as' => 'admin.index', 'uses' => 'Admin\DashboardController@getIndex'] );
 
-        /* Members */
-        Route::get( 'members/manage', ['as' => 'admin.members.manage', 'uses' => 'Admin\MembersController@getManage'] );
-        Route::post( 'members/balance/{user}', 'Admin\MembersController@postBalance' );
-        Route::post( 'members/search', 'Admin\MembersController@postSearch' );
-
         /* System */
         Route::group( ['prefix' => 'system', 'as' => 'admin.system.'], function() {
 
@@ -75,6 +70,11 @@ Route::group(['middleware' => ['web', 'language']], function () {
             Route::post( 'apps', 'Admin\SystemController@postApps' );
 
         });
+
+        /* Members */
+        Route::get( 'members/manage', ['as' => 'admin.members.manage', 'uses' => 'Admin\MembersController@getManage'] );
+        Route::post( 'members/balance/{user}', 'Admin\MembersController@postBalance' );
+        Route::post( 'members/search', 'Admin\MembersController@postSearch' );
 
         /* News */
         Route::get( 'news/settings', ['as' => 'admin.news.settings', 'uses' => 'Admin\NewsController@getSettings'] );
