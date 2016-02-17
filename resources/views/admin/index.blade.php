@@ -5,20 +5,6 @@
         <div class="portlet light bordered">
             <div class="portlet-title">
                 <div class="caption">
-                    <span class="caption-subject font-red bold uppercase">Port Status</span>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div class="row">
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="portlet light bordered">
-            <div class="portlet-title">
-                <div class="caption">
                     <span class="caption-subject font-red bold uppercase">Game Stats</span>
                 </div>
             </div>
