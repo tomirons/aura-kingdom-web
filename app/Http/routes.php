@@ -25,6 +25,10 @@
 
 Route::group(['middleware' => ['web']], function () {
 
+    /* Account Settings */
+    Route::get( 'account/settings', ['as' => 'account.settings', 'uses' => 'Front\AccountController@getSettings'] );
+    Route::post( 'account/settings/password', 'Front\AccountController@postPassword' );
+
     /* Character */
     Route::get( 'character/select/{role_id}', 'Front\CharacterController@getIndex' );
 

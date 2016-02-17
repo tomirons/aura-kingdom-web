@@ -87,7 +87,7 @@ return [
     | specify a specific custom language line for a given attribute rule.
     |
     */
-
+    'current_pass' => 'Your password doesn\'t match your current one.',
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',

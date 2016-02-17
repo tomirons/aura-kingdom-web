@@ -169,6 +169,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Laravolt\Avatar\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        App\Providers\CustomValidation::class,
 
     ],
 
