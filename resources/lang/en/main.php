@@ -60,6 +60,7 @@ return [
     'not_enough' => 'You don\'t have enough :currency.',
     'not_enough_gold' => 'You don\'t have enough gold.',
 
+    'submit' => 'Submit',
     'save' => 'Save',
     'save_settings' => 'Save Settings',
     'settings' => 'Settings',

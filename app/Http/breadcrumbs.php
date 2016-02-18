@@ -78,6 +78,20 @@ Breadcrumbs::register( 'admin.members.manage', function( $breadcrumbs )
     $breadcrumbs->push( trans( 'members.manage' ) );
 });
 
+Breadcrumbs::register( 'admin.members.balance', function( $breadcrumbs, \App\User $user )
+{
+    $breadcrumbs->parent( 'admin.index' );
+    $breadcrumbs->push( trans( 'main.apps.members' ) );
+    $breadcrumbs->push( trans( 'members.balance', ['member' =>  $user->username] ) );
+});
+
+Breadcrumbs::register( 'admin.members.permissions', function( $breadcrumbs, \App\User $user )
+{
+    $breadcrumbs->parent( 'admin.index' );
+    $breadcrumbs->push( trans( 'main.apps.members' ) );
+    $breadcrumbs->push( trans( 'members.permissions', ['member' =>  $user->username] ) );
+});
+
 /* News */
 Breadcrumbs::register( 'admin.news', function( $breadcrumbs )
 {

@@ -20,7 +20,7 @@
                         <th> {{ trans( 'members.table.id' ) }} </th>
                         <th> {{ trans( 'members.table.name' ) }} </th>
                         <th> {{ trans( 'members.table.balance' ) }} </th>
-                        <th> {{ trans( 'members.table.role' ) }} </th>
+                        <th> {{ trans( 'members.table.joined' ) }} </th>
                         <th> {{ trans( 'members.table.actions' ) }} </th>
                     </tr>
                 </thead>
@@ -30,32 +30,14 @@
                             <td> {{ $user->id }} </td>
                             <td> {{ $user->username }} </td>
                             <td> {{ $user->balance() }} </td>
-                            <td> {{ $user->role }} </td>
+                            <td> {{ $user->created_at->format( 'l, F jS, Y' ) }} </td>
                             <td>
-                                <a class="btn red btn-outline" data-toggle="modal" href="#{{ $user->username }}_balance"> {{ trans( 'members.actions.give' ) }} </a>
-                                <div class="modal fade" id="{{ $user->username }}_balance" tabindex="-1" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <form action="{{ url( 'admin/members/balance/' . $user->id ) }}" method="post">
-                                                {!! csrf_field() !!}
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                                    <h4 class="modal-title">{{ trans( 'members.modal.title', ['user' => $user->username] ) }}</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="form-group form-md-line-input form-md-floating-label">
-                                                        <input name="amount" type="text" class="form-control" id="amount">
-                                                        <label for="amount">{{ trans( 'members.fields.amount.label' ) }}</label>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button class="btn dark btn-outline" data-dismiss="modal">{{ trans( 'members.modal.close' ) }}</button>
-                                                    <button type="submit" class="btn green">{{ trans( 'members.modal.submit' ) }}</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                                @if( Auth::user()->can( 'manage-users' ) )
+                                    <a class="btn red btn-outline" href="{{ url( 'admin/members/balance/' . $user->id ) }}"> {{ trans( 'members.actions.give' ) }} </a>
+                                @endif
+                                @if( Auth::user()->can( 'manage-permissions' ) )
+                                    <a class="btn blue btn-outline" href="{{ url( 'admin/members/permissions/' . $user->id ) }}"> {{ trans( 'members.actions.permissions' ) }} </a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

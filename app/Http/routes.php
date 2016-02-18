@@ -79,8 +79,11 @@ Route::group(['middleware' => ['web']], function () {
         Route::group( ['prefix' => 'members', 'as' => 'admin.members.', 'middleware' => ['role:admin|mod', 'permission:manage-users']], function() {
 
             Route::get( 'manage', ['as' => 'manage', 'uses' => 'Admin\MembersController@getManage'] );
-            Route::post( 'balance/{user}', 'Admin\MembersController@postBalance' );
             Route::post( 'search', 'Admin\MembersController@postSearch' );
+            Route::get( 'permissions/{user}', ['as' => 'permissions', 'middleware' => ['permission:manage-permissions'], 'uses' => 'Admin\MembersController@getPermissions'] );
+            Route::post( 'permissions/{user}', 'Admin\MembersController@postPermissions' );
+            Route::get( 'balance/{user}', ['as' => 'balance', 'middleware' => ['permission:manage-users'], 'uses' => 'Admin\MembersController@getBalance'] );
+            Route::post( 'balance/{user}', 'Admin\MembersController@postBalance' );
 
         });
 

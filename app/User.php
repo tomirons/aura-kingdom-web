@@ -27,16 +27,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get weather or not the user has administrative privileges
-     *
-     * @return bool
-     */
-    public function is_admin()
-    {
-        return ( $this->role === 'administrator' ) ? TRUE : FALSE;
-    }
-
-    /**
      * Get account balance
      *
      * @return string

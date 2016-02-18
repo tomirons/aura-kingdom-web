@@ -20,6 +20,7 @@
                         </li>
                     @endif
                 @else
+
                     @if( Auth::user()->can( $menu['role'] ) )
                         @if( isset( $menu['application'] ) )
                             @if ( \App\Application::find( $name )->enabled )
