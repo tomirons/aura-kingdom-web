@@ -106,7 +106,7 @@ class MembersController extends Controller
             $user->attachRole( $role );
         }
 
-        flash()->success( trans( 'members.success.permissions', ['user' => $user->username, 'role' => $role ? trans( 'members.roles.' . $role->name ) : trans( 'members.roles.member' ) ] ) );
+        flash()->success( trans( 'members.success.permissions', ['user' => $user->username, 'role' => strtolower( $role ? trans( 'members.roles.' . $role->name ) : trans( 'members.roles.member' ) ) ] ) );
         return redirect( 'admin/members/manage' );
     }
 }
