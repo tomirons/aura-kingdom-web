@@ -61,12 +61,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::get( 'ranking/family/{sub}', ['as' => 'ranking.index', 'uses' => 'Front\RankingController@getFamily'] );
 
     /* Admin */
-    Route::group( ['prefix' => 'admin', 'middleware' => ['auth', 'admin'] ], function() {
+    Route::group( ['prefix' => 'admin', 'middleware' => ['auth', 'staff'] ], function() {
 
         Route::get( '/', ['as' => 'admin.index', 'uses' => 'Admin\DashboardController@getIndex'] );
 
         /* System */
-        Route::group( ['prefix' => 'system', 'as' => 'admin.system.'], function() {
+        Route::group( ['prefix' => 'system', 'as' => 'admin.system.', 'middleware' => ['role:admin|mod', 'permission:manage-system']], function() {
 
             Route::get( 'settings', ['as' => 'settings', 'uses' => 'Admin\SystemController@getSettings'] );
             Route::post( 'settings', 'Admin\SystemController@postSettings' );
@@ -76,19 +76,25 @@ Route::group(['middleware' => ['web']], function () {
         });
 
         /* Members */
-        Route::get( 'members/manage', ['as' => 'admin.members.manage', 'uses' => 'Admin\MembersController@getManage'] );
-        Route::post( 'members/balance/{user}', 'Admin\MembersController@postBalance' );
-        Route::post( 'members/search', 'Admin\MembersController@postSearch' );
+        Route::group( ['prefix' => 'members', 'as' => 'admin.members.', 'middleware' => ['role:admin|mod', 'permission:manage-users']], function() {
+
+            Route::get( 'manage', ['as' => 'manage', 'uses' => 'Admin\MembersController@getManage'] );
+            Route::post( 'balance/{user}', 'Admin\MembersController@postBalance' );
+            Route::post( 'search', 'Admin\MembersController@postSearch' );
+
+        });
 
         /* News */
-        Route::get( 'news/settings', ['as' => 'admin.news.settings', 'uses' => 'Admin\NewsController@getSettings'] );
-        Route::post( 'news/settings', 'Admin\NewsController@postSettings' );
         Route::resource( 'news', 'Admin\NewsController' );
 
         /* Donate */
-        Route::get( 'donate/settings', ['as' => 'admin.donate.settings', 'uses' => 'Admin\DonateController@getSettings'] );
-        Route::post( 'donate/paypal', 'Admin\DonateController@postPaypalSettings' );
-        Route::post( 'donate/paymentwall', 'Admin\DonateController@postPaymentwallSettings' );
+        Route::group( ['prefix' => 'donate', 'as' => 'admin.donate.', 'middleware' => ['role:admin|mod', 'permission:change-donate-settings']], function() {
+
+            Route::get( 'settings', ['as' => 'settings', 'uses' => 'Admin\DonateController@getSettings'] );
+            Route::post( 'paypal', 'Admin\DonateController@postPaypalSettings' );
+            Route::post( 'paymentwall', 'Admin\DonateController@postPaymentwallSettings' );
+
+        });
 
         /* Vote */
         Route::resource( 'vote', 'Admin\VoteController' );

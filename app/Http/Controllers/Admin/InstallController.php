@@ -11,6 +11,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 class InstallController extends Controller
@@ -150,7 +151,7 @@ class InstallController extends Controller
     {
         // Check if there are accounts already created
         $accounts = DB::connection( 'member' )->table( 'tb_user' )->get();
-        if ( count( $accounts ) > 0 )
+        if ( count( $accounts ) == 0 )
         {
             foreach ( $accounts as $account )
             {
@@ -163,13 +164,21 @@ class InstallController extends Controller
             }
         }
 
+        // Create an administrator account
+        $password = str_random();
+        $user = User::create([
+            'username' => 'administrator',
+            'password' => Hash::make( $password )
+        ]);
+        $user->attachRole(1);
+
         if ( session( 'message' )['status'] === 'success' )
         {
             Artisan::call( 'key:generate' );
             file_put_contents( storage_path( 'installed'), '' );
         }
 
-        return view( 'admin.install.complete' );
+        return view( 'admin.install.complete', compact( 'password' ) );
     }
 
     /**

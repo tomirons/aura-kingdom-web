@@ -12,6 +12,16 @@ use App\Http\Controllers\Controller;
 class NewsController extends Controller
 {
     /**
+     * Initiate middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('role:admin|mod');
+
+        $this->middleware('permission:manage-articles');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

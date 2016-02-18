@@ -73,7 +73,7 @@
                                         <span>{{ Auth::user()->username }}</span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-default">
-                                        @if ( Auth::user()->is_admin() )
+                                        @if ( Auth::user()->hasRole( 'admin' ) || Auth::user()->hasRole( 'mod' ) )
                                             <li>
                                                 <a href="{{ url( 'admin' ) }}" target="_blank">
                                                     <i class="icon-rocket"></i> {{ trans( 'main.acp_link' ) }}

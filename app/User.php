@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
+    use EntrustUserTrait;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -40,7 +43,8 @@ class User extends Authenticatable
      */
     public function balance()
     {
-        return number_format( DB::connection( 'member' )->table( 'tb_user' )->where( 'mid', $this->username )->first()->pvalues );
+        $member = DB::connection( 'member' )->table( 'tb_user' )->where( 'mid', $this->username );
+        return ( $member->exists() ) ? number_format( $member->first()->pvalues ) : 0;
     }
 
     /**

@@ -11,6 +11,17 @@ use App\Http\Controllers\Controller;
 
 class VoteController extends Controller
 {
+
+    /**
+     * Initiate middleware
+     */
+    public function __construct()
+    {
+        $this->middleware('role:admin|mod');
+
+        $this->middleware('permission:manage-vote-sites');
+    }
+
     /**
      * Display a listing of the resource.
      *

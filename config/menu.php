@@ -21,25 +21,30 @@ return [
     'admin' => [
         'dashboard',
         'system' => [
+            'role' => 'manage-system',
             'apps',
             'settings'
         ],
-        'members' => [
-            'manage'
-        ],
         'news' => [
-            'application' => TRUE,
+            'role' => 'manage-articles',
+            'application' => true,
             'create',
             'view'
         ],
         'donate' => [
-            'application' => TRUE,
+            'role' => 'change-donate-settings',
+            'application' => true,
             'settings'
         ],
         'vote' => [
-            'application' => TRUE,
+            'role' => 'manage-vote-sites',
+            'application' => true,
             'create',
             'view'
+        ],
+        'members' => [
+            'role' => 'manage-users',
+            'manage'
         ]
     ]
 ];

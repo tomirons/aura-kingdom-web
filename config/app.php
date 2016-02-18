@@ -170,6 +170,7 @@ return [
         Laravolt\Avatar\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         App\Providers\CustomValidation::class,
+        Zizaco\Entrust\EntrustServiceProvider::class
 
     ],
 

@@ -40,6 +40,7 @@ return [
         'title' => 'Complete',
         'retry' => 'Try Again',
         'installed' => 'Application has been successfully installed, you may now exit the installer.',
+        'admin_account' => 'We\'ve created an administrator account for you to get started. <br><br> <b>Username:</b> administrator <br> <b>Password:</b> :password',
         'exit' => 'Exit Installer'
     ]
 

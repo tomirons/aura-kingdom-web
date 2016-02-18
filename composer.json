@@ -14,7 +14,8 @@
         "graham-campbell/github": "^4.2",
         "laravolt/avatar": "^1.2",
         "laravelcollective/html": "^5.2",
-        "omnipay/omnipay": "^2.3"
+        "omnipay/omnipay": "^2.3",
+        "zizaco/entrust": "5.2.x-dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
