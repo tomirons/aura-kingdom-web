@@ -12,7 +12,6 @@
             <ul class="nav nav-pills mb-none">
                 <li {{ str_contains( Request::url(), 'level' ) ? 'class=active' : NULL }}><a href="{{ url( 'ranking/' . Request::segment(2) . '/level' ) }}">{{ trans( 'ranking.type.level' ) }}</a></li>
                 <li {{ str_contains( Request::url(), 'gold' ) ? 'class=active' : NULL }}><a href="{{ url( 'ranking/' . Request::segment(2) . '/gold' ) }}">{{ trans( 'ranking.type.gold' ) }}</a></li>
-                <li {{ str_contains( Request::url(), 'pvp' ) ? 'class=active' : NULL }}><a href="{{ url( 'ranking/' . Request::segment(2) . '/pvp' ) }}">{{ trans( 'ranking.type.pvp' ) }}</a></li>
             </ul>
         </div>
     </div>

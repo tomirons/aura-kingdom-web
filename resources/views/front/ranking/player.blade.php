@@ -10,7 +10,6 @@
                     <tr>
                         <th> # </th>
                         <th> {{ trans( 'ranking.name' ) }} </th>
-                        <th> {{ trans( 'ranking.class' ) }} </th>
                         <th> {{ trans( 'ranking.type.' . Request::segment( 3 ) ) }} </th>
                         <th> {{ trans( 'ranking.family' ) }} </th>
                     </tr>
@@ -23,7 +22,6 @@
                                     <span class="badge badge-primary badge-roundless"> {{ $count }} </span>
                                 </td>
                                 <td> {{ $player->name }} </td>
-                                <td> <span class="class s-16 c{{ $player->class }} pull-left mr-xs"></span> {{ trans( 'main.classes.' . $player->class ) }} </td>
                                 <td>
                                     @if ( Request::is( 'ranking/*/level' ) )
                                         {{ $player->level }}
