@@ -151,7 +151,7 @@ class InstallController extends Controller
     {
         // Check if there are accounts already created
         $accounts = DB::connection( 'member' )->table( 'tb_user' )->get();
-        if ( count( $accounts ) == 0 )
+        if ( count( $accounts ) > 0 )
         {
             foreach ( $accounts as $account )
             {
