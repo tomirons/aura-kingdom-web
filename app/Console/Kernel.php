@@ -31,16 +31,19 @@ class Kernel extends ConsoleKernel
             $players = DB::connection('game')->table('player_characters')->get();
             foreach ($players as $player)
             {
-                $player_info = [
-                    'id' => $player->id,
-                    'name' => $player->given_name,
-                    'level' => $player->level,
-                    'class' => 0,
-                    'gold' => $player->gold,
-                    'family_name' => ($player->family_id) ? DB::connection('game')->table('family')->where('id', $player->family_id)->first()->name : '-'
-                ];
+                if (!Player::where('id', $player->id)->exists())
+                {
+                    $player_info = [
+                        'id' => $player->id,
+                        'name' => $player->given_name,
+                        'level' => $player->level,
+                        'class' => 0,
+                        'gold' => $player->gold,
+                        'family_name' => ($player->family_id) ? DB::connection('game')->table('family')->where('id', $player->family_id)->first()->name : '-'
+                    ];
 
-                Player::create($player_info);
+                    Player::create($player_info);
+                }
             }
         })->everyTenMinutes();
 
@@ -48,22 +51,25 @@ class Kernel extends ConsoleKernel
             $families = DB::connection('game')->table('family')->get();
             foreach ($families as $family)
             {
-                $gold = 0;
-                foreach ( DB::connection( 'game' )->table( 'player_characters' )->where( 'family_id', $family->id )->get() as $player )
+                if (!Family::where('id', $family->id)->exists())
                 {
-                    $gold += $player->gold;
+                    $gold = 0;
+                    foreach ( DB::connection( 'game' )->table( 'player_characters' )->where( 'family_id', $family->id )->get() as $player )
+                    {
+                        $gold += $player->gold;
+                    }
+
+                    $family_info = [
+                        'id' => $family->id,
+                        'name' => $family->name,
+                        'level' => $family->lv,
+                        'gold' => $gold,
+                        'members' => DB::connection( 'game' )->table( 'player_characters' )->where( 'family_id', $family->id )->count(),
+                        'leader' => DB::connection( 'game' )->table( 'player_characters' )->where( 'id', $family->leader_id )->first()->given_name
+                    ];
+
+                    Family::create($family_info);
                 }
-
-                $family_info = [
-                    'id' => $family->id,
-                    'name' => $family->name,
-                    'level' => $family->lv,
-                    'gold' => $gold,
-                    'members' => DB::connection( 'game' )->table( 'player_characters' )->where( 'family_id', $family->id )->count(),
-                    'leader' => DB::connection( 'game' )->table( 'player_characters' )->where( 'id', $family->leader_id )->first()->given_name
-                ];
-
-                Family::create($family_info);
             }
         })->everyTenMinutes();
     }
