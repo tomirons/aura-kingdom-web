@@ -20,7 +20,9 @@ return [
 
     'double_donation' => 'Double Donation',
     'paypal_currency' => 'Paypal Currency',
-    'paypal_email' => 'Paypal Email',
+    'paypal_client_id' => 'Client ID',
+    'paypal_client_id_desc' => 'To obtain a client ID and secret, <a href="https://remoteservices.invisionpower.com/docs/paypal_developer/?version=101023" target="_blank">create an application on PayPal\'s developer site</a>. Make sure you use the <strong>live credentials</strong>, not the sandbox credentials.',
+    'paypal_secret' => 'Secret',
     'paypal_per' => 'Currency per :currency',
     'paypal_min' => 'Minimum Amount',
     'paypal' => [
