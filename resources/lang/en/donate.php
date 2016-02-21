@@ -29,7 +29,7 @@ return [
         'description' => ':amount Aura Points',
         'success' => 'Thank you for supporting our server, we appreciate your donation.'
     ],
-    'paymentwall_app_key' => 'Application Key',
+    'paymentwall_app_key' => 'Project Key',
     'paymentwall_key' => 'Secret Key',
     'paymentwall_link' => 'iFrame Link',
     'paymentwall_setup' => [
