@@ -70,6 +70,16 @@ class PermissionsTableSeeder extends Seeder
             $mod->attachPermission($permission);
         }
 
+        if ( !DB::table('permissions')->where('name', 'manage-ranking-settings' )->exists() )
+        {
+            $permission = new Permission();
+            $permission->name = 'manage-ranking-settings';
+            $permission->display_name = 'Manage Rakning Settings';
+            $permission->save();
+
+            $admin->attachPermission($permission);
+        }
+
         if ( !DB::table('permissions')->where('name', 'manage-users' )->exists() )
         {
             $permission = new Permission();

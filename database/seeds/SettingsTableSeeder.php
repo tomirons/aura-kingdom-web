@@ -91,5 +91,21 @@ class SettingsTableSeeder extends Seeder
                 'setting_value' => serialize(NULL)
             ]);
         }
+
+        if ( !DB::table('settings')->where('setting_key', 'ranking_ignore_characters' )->exists() )
+        {
+            DB::table('settings')->insert([
+                'setting_key' => 'ranking_ignore_characters',
+                'setting_value' => serialize(NULL)
+            ]);
+        }
+
+        if ( !DB::table('settings')->where('setting_key', 'ranking_ignore_families' )->exists() )
+        {
+            DB::table('settings')->insert([
+                'setting_key' => 'ranking_ignore_families',
+                'setting_value' => serialize(NULL)
+            ]);
+        }
     }
 }

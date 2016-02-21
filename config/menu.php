@@ -42,6 +42,11 @@ return [
             'create',
             'view'
         ],
+        'ranking' => [
+            'role' => 'manage-ranking-settings',
+            'application' => true,
+            'settings'
+        ],
         'members' => [
             'role' => 'manage-users',
             'manage'

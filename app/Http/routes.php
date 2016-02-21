@@ -102,6 +102,10 @@ Route::group(['middleware' => ['web']], function () {
         /* Vote */
         Route::resource( 'vote', 'Admin\VoteController' );
 
+        /* Ranking */
+        Route::get( 'ranking/settings', ['as' => 'admin.ranking.settings', 'uses' => 'Admin\RankingController@getSettings'] );
+        Route::post( 'ranking/settings', 'Admin\RankingController@postSettings' );
+
     });
 
     /* Installer */

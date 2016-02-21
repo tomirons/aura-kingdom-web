@@ -32,5 +32,9 @@ return [
         'create' => 'Add Site',
         'view' => 'View Sites'
     ],
+    'ranking' => [
+        'title' => 'Ranking',
+        'settings' => 'Settings'
+    ],
 
 ];

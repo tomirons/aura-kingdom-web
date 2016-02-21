@@ -29,6 +29,8 @@ class Family extends Model
      */
     public function scopeType( $query, $sub )
     {
-        return $query->orderBy( isset( $this->types[ $sub ] ) ? $this->types[ $sub ] : 'level' , 'desc' );
+        return $query
+            ->whereNotIn( 'id', explode( ',', settings( 'ranking_ignore_families', '0' ) ) )
+            ->orderBy( isset( $this->types[ $sub ] ) ? $this->types[ $sub ] : 'level' , 'desc' );
     }
 }
