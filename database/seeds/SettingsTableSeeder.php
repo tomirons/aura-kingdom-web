@@ -84,6 +84,14 @@ class SettingsTableSeeder extends Seeder
             ]);
         }
 
+        if ( !DB::table('settings')->where('setting_key', 'paymentwall_app_key' )->exists() )
+        {
+            DB::table('settings')->insert([
+                'setting_key' => 'paymentwall_app_key',
+                'setting_value' => serialize(NULL)
+            ]);
+        }
+
         if ( !DB::table('settings')->where('setting_key', 'paymentwall_key' )->exists() )
         {
             DB::table('settings')->insert([

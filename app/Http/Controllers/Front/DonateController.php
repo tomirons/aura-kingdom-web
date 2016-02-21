@@ -11,6 +11,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Omnipay\Omnipay;
+use Paymentwall_Config;
+use Paymentwall_Pingback;
 
 class DonateController extends Controller
 {
@@ -26,13 +28,21 @@ class DonateController extends Controller
      */
     public function __construct()
     {
-        $this->middleware( 'auth' );
+        $this->middleware( 'auth', ['except' => ['getPaymentWall']] );
 
+        // Setup the PayPal gateway
         $this->gateway = Omnipay::create( 'PayPal_Rest' );
         $this->gateway->initialize([
             'clientId' => settings( 'paypal_client_id' ),
             'secret'   => settings( 'paypal_secret' ),
             'testMode' => false,
+        ]);
+
+        // Setup the PaymentWall instance
+        Paymentwall_Config::getInstance()->set([
+            'api_type' => Paymentwall_Config::API_VC,
+            'public_key' => settings( 'paymentwall_app_key' ),
+            'private_key' => settings( 'paymentwall_key' )
         ]);
     }
 
@@ -118,5 +128,37 @@ class DonateController extends Controller
 
         flash()->success( trans( 'donate.paypal.success' ) );
         return redirect( 'donate' );
+    }
+
+    /**
+     * Process the PaymentWall payment
+     *
+     * @param Request $request
+     */
+    public function getPaymentWall( Request $request )
+    {
+        $pingback = new Paymentwall_Pingback( $_GET, $_SERVER['REMOTE_ADDR'] );
+        if ( $pingback->validate() )
+        {
+            $virtualCurrency = $pingback->getVirtualCurrencyAmount();
+            $user = UserInfo::find( $request->uid );
+            if ( $pingback->isDeliverable() )
+            {
+                // Add the currency to the user
+                $user->pvalues = $user->pvalues + $virtualCurrency;
+                $user->save();
+            }
+            elseif ( $pingback->isCancelable() )
+            {
+                // Take the currency from the user
+                $user->pvalues = $user->pvalues + $virtualCurrency;
+                $user->save();
+            }
+            echo 'OK'; // Paymentwall expects response to be OK, otherwise the pingback will be resent
+        }
+        else
+        {
+            echo $pingback->getErrorSummary();
+        }
     }
 }

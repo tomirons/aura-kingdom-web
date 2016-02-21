@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bc3276e73f42cbc93bc91d96fbecc128",
-    "content-hash": "33c52b122038408588f8a494fe967ae5",
+    "hash": "efc0cad3295641b33a572d3ecdbeac3e",
+    "content-hash": "f0eb3c1dc7f1eed735818b9419a5fac3",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -3200,6 +3200,59 @@
                 "random"
             ],
             "time": "2016-02-06 03:52:05"
+        },
+        {
+            "name": "paymentwall/paymentwall-php",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paymentwall/paymentwall-php.git",
+                "reference": "d60237e64ba00ba841809b1186d0c18ed6c5d8f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paymentwall/paymentwall-php/zipball/d60237e64ba00ba841809b1186d0c18ed6c5d8f2",
+                "reference": "d60237e64ba00ba841809b1186d0c18ed6c5d8f2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.2"
+            },
+            "require-dev": {
+                "behat/behat": "2.4.*@stable"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/Paymentwall/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paymentwall Team",
+                    "email": "devsupport@paymentwall.com"
+                }
+            ],
+            "description": "Paymentwall PHP Library. Paymentwall is the leading digital payments platform for globally monetizing digital goods and services.",
+            "homepage": "http://paymentwall.com?source=gh",
+            "keywords": [
+                "alternative payments",
+                "api",
+                "carrier billing",
+                "credit cards",
+                "monetization",
+                "payment processing",
+                "payments",
+                "paymentwall",
+                "recurring billing"
+            ],
+            "time": "2015-08-17 17:24:21"
         },
         {
             "name": "psr/http-message",

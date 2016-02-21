@@ -63,8 +63,9 @@ class DonateController extends Controller
     public function postPaymentwallSettings(Request $request )
     {
         $this->validate($request, [
-            'paymentwall_link' => 'required',
+            'paymentwall_app_key' => 'required',
             'paymentwall_key' => 'required',
+            'paymentwall_link' => 'required'
         ]);
 
         Settings::set( 'paymentwall_double', $request->paymentwall_double );
@@ -74,7 +75,12 @@ class DonateController extends Controller
             preg_match( '/src="([^"]+)"/', $request->paymentwall_link, $match );
             Settings::set( 'paymentwall_link', $match[1] );
         }
+        else
+        {
+            Settings::set( 'paymentwall_link', $request->paymentwall_link );
+        }
 
+        Settings::set( 'paymentwall_app_key', $request->paymentwall_app_key );
         Settings::set( 'paymentwall_key', $request->paymentwall_key );
 
         flash()->success( trans( 'main.settings_saved' ) );

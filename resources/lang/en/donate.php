@@ -29,9 +29,9 @@ return [
         'description' => ':amount Aura Points',
         'success' => 'Thank you for supporting our server, we appreciate your donation.'
     ],
-    'paymentwall_link' => 'iFrame Link',
-    'paymentwall_link_desc' => '',
+    'paymentwall_app_key' => 'Application Key',
     'paymentwall_key' => 'Secret Key',
+    'paymentwall_link' => 'iFrame Link',
     'paymentwall_setup' => [
         'title' => 'How to Setup Paymentwall',
         'steps' => [

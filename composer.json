@@ -15,7 +15,8 @@
         "laravolt/avatar": "^1.2",
         "laravelcollective/html": "^5.2",
         "omnipay/omnipay": "^2.3",
-        "zizaco/entrust": "5.2.x-dev"
+        "zizaco/entrust": "5.2.x-dev",
+        "paymentwall/paymentwall-php": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
